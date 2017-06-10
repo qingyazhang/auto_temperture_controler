@@ -1,0 +1,12 @@
+keil4软件安装包下载地址  链接: http://pan.baidu.com/s/1eQH1PEM 密码: m1ae
+软件使用教程下载地址     链接: http://pan.baidu.com/s/1jGn71n4 密码: n1my
+软件安装教程下载地址     链接: http://pan.baidu.com/s/1bnbA4eb 密码: vpb5
+软件视频教程下载地址     链接: http://pan.baidu.com/s/1pJ0U1cB 密码: q7bb
+
+keil2软件安装包下载地址  链接: http://pan.baidu.com/s/1xrmb0 密码: 6jmb
+
+注意：keil4是可以打开keil2编译的程序的，打开并编译后就变成keil4的文件了，
+      此时keil2就打不开了，keil2是打不开keil4生产的文件的。
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~请严格按照安装说明安装~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

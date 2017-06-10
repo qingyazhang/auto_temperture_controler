@@ -1,0 +1,254 @@
+BL51 BANKED LINKER/LOCATER V4.13                                                        05/19/2011  00:39:50  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V4.13, INVOKED BY:
+C:\KEIL\C51\BIN\BL51.EXE HangWai.obj TO HongWai RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  HangWai.obj (HANGWAI)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\KEIL\C51\LIB\C51S.LIB (?C?ULCMP)
+  C:\KEIL\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  HongWai (HANGWAI)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            REG     0008H     0008H     ABSOLUTE     "REG BANK 1"
+            DATA    0010H     0010H     UNIT         ?DT?HANGWAI
+            IDATA   0020H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0010H     UNIT         ?CO?HANGWAI
+            CODE    0013H     0003H     ABSOLUTE     
+            CODE    0016H     0151H     UNIT         ?PR?INTERSVR1?HANGWAI
+            CODE    0167H     00DFH     UNIT         ?C?LIB_CODE
+            CODE    0246H     008CH     UNIT         ?C_C51STARTUP
+            CODE    02D2H     0045H     UNIT         ?PR?MAIN?HANGWAI
+            CODE    0317H     0025H     UNIT         ?PR?DISPLAY?HANGWAI
+            CODE    033CH     0014H     UNIT         ?PR?_DELAY?HANGWAI
+            CODE    0350H     000BH     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   HongWai (HANGWAI)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?HANGWAI
+  +--> ?C_INITSEG
+
+
+
+SYMBOL TABLE OF MODULE:  HongWai (HANGWAI)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V4.13                                                      05/19/2011  00:39:50  PAGE 2
+
+
+  -------         MODULE        HANGWAI
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  B:00D0H.6       PUBLIC        AC
+  B:00A8H.7       PUBLIC        EA
+  B:00D8H.7       PUBLIC        CF
+  C:0003H         PUBLIC        table
+  B:00A8H.5       PUBLIC        EADC
+  D:00A8H         PUBLIC        IE
+  B:00D8H.6       PUBLIC        CR
+  B:00A8H.4       PUBLIC        ES
+  B:00B8H.5       PUBLIC        PADC
+  D:00B8H         PUBLIC        IP
+  B:0098H.0       PUBLIC        RI
+  B:00D0H.7       PUBLIC        CY
+  B:0098H.1       PUBLIC        TI
+  B:00B8H.4       PUBLIC        PS
+  D:00D8H         PUBLIC        CCON
+  B:00B8H.7       PUBLIC        PPCA
+  B:00D0H.2       PUBLIC        OV
+  C:02D2H         PUBLIC        main
+  B:00A0H.2       PUBLIC        LEDR
+  B:00A0H.6       PUBLIC        dula
+  B:00A0H.7       PUBLIC        wela
+  B:00A8H.6       PUBLIC        ELVD
+  C:0016H         PUBLIC        intersvr1
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:0088H         PUBLIC        TCON
+  D:0010H         PUBLIC        Im
+  D:0014H         PUBLIC        Tc
+  B:00B8H.6       PUBLIC        PLVD
+  B:0088H.1       PUBLIC        IE0
+  B:0088H.3       PUBLIC        IE1
+  D:0018H         PUBLIC        show
+  B:00A8H.1       PUBLIC        ET0
+  B:0088H.5       PUBLIC        TF0
+  B:00A8H.3       PUBLIC        ET1
+  B:0088H.7       PUBLIC        TF1
+  B:0098H.2       PUBLIC        RB8
+  D:008CH         PUBLIC        TH0
+  B:0088H.0       PUBLIC        IT0
+  B:00A8H.0       PUBLIC        EX0
+  B:0098H.3       PUBLIC        TB8
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  B:00D0H.0       PUBLIC        P
+  B:0098H.7       PUBLIC        SM0
+  D:008AH         PUBLIC        TL0
+  B:0098H.6       PUBLIC        SM1
+  B:0098H.5       PUBLIC        SM2
+  B:00B8H.1       PUBLIC        PT0
+  B:00B8H.3       PUBLIC        PT1
+  B:00D0H.3       PUBLIC        RS0
+  D:001AH         PUBLIC        IrOK
+  B:0088H.4       PUBLIC        TR0
+BL51 BANKED LINKER/LOCATER V4.13                                                      05/19/2011  00:39:50  PAGE 3
+
+
+  B:00D0H.4       PUBLIC        RS1
+  B:0088H.6       PUBLIC        TR1
+  B:00B8H.0       PUBLIC        PX0
+  B:00B8H.2       PUBLIC        PX1
+  D:001BH         PUBLIC        f
+  B:0098H.4       PUBLIC        REN
+  D:001CH         PUBLIC        m
+  C:0342H         PUBLIC        _delay
+  B:00D0H.5       PUBLIC        F0
+  C:0317H         PUBLIC        display
+  D:00D0H         PUBLIC        PSW
+  B:00D8H.0       PUBLIC        CCF0
+  B:00D8H.1       PUBLIC        CCF1
+  -------         PROC          L?0025
+  -------         ENDPROC       L?0025
+  -------         PROC          _DELAY
+  D:0007H         SYMBOL        i
+  -------         DO            i
+  D:0007H         SYMBOL        j
+  D:0006H         SYMBOL        k
+  -------         ENDDO         k
+  C:0342H         LINE#         28
+  C:0342H         LINE#         29
+  C:0342H         LINE#         31
+  C:0348H         LINE#         32
+  C:034FH         LINE#         33
+  -------         ENDPROC       _DELAY
+  -------         PROC          DISPLAY
+  C:0317H         LINE#         36
+  C:0317H         LINE#         37
+  C:0317H         LINE#         38
+  C:0319H         LINE#         39
+  C:0321H         LINE#         40
+  C:0323H         LINE#         41
+  C:0325H         LINE#         43
+  C:0327H         LINE#         44
+  C:032AH         LINE#         45
+  C:032AH         LINE#         46
+  C:032AH         LINE#         47
+  C:032DH         LINE#         49
+  C:0332H         LINE#         50
+  C:0334H         LINE#         51
+  C:0336H         LINE#         53
+  C:0339H         LINE#         54
+  C:0339H         LINE#         55
+  C:0339H         LINE#         56
+  -------         ENDPROC       DISPLAY
+  -------         PROC          INTERSVR1
+  C:0016H         LINE#         61
+  C:0023H         LINE#         63
+  C:0025H         LINE#         64
+  C:003CH         LINE#         65
+  C:003EH         LINE#         66
+  C:0040H         LINE#         67
+  C:0061H         LINE#         68
+  C:0061H         LINE#         69
+  C:006DH         LINE#         70
+BL51 BANKED LINKER/LOCATER V4.13                                                      05/19/2011  00:39:50  PAGE 4
+
+
+  C:0073H         LINE#         72
+  C:0073H         LINE#         73
+  C:007CH         LINE#         74
+  C:007CH         LINE#         75
+  C:009EH         LINE#         76
+  C:009EH         LINE#         77
+  C:00D8H         LINE#         78
+  C:00D8H         LINE#         79
+  C:00FBH         LINE#         80
+  C:00FBH         LINE#         81
+  C:012EH         LINE#         82
+  C:012EH         LINE#         83
+  C:0142H         LINE#         84
+  C:0142H         LINE#         85
+  C:014AH         LINE#         86
+  C:014CH         LINE#         87
+  C:0152H         LINE#         88
+  C:0152H         LINE#         89
+  C:0155H         LINE#         90
+  C:0157H         LINE#         91
+  C:0159H         LINE#         92
+  C:015CH         LINE#         93
+  C:015CH         LINE#         95
+  C:015CH         LINE#         97
+  -------         ENDPROC       INTERSVR1
+  -------         PROC          MAIN
+  -------         DO            MAIN
+  D:0002H         SYMBOL        a
+  -------         ENDDO         a
+  C:02D2H         LINE#         101
+  C:02D2H         LINE#         102
+  C:02D2H         LINE#         105
+  C:02DBH         LINE#         106
+  C:02DDH         LINE#         107
+  C:02DFH         LINE#         109
+  C:02E1H         LINE#         110
+  C:02E3H         LINE#         112
+  C:02E6H         LINE#         113
+  C:02E8H         LINE#         114
+  C:02EAH         LINE#         115
+  C:02ECH         LINE#         117
+  C:02ECH         LINE#         118
+  C:02ECH         LINE#         120
+  C:02F1H         LINE#         121
+  C:02F1H         LINE#         122
+  C:02F7H         LINE#         123
+  C:02FEH         LINE#         124
+  C:0301H         LINE#         125
+  C:0303H         LINE#         126
+  C:0303H         LINE#         127
+  C:0310H         LINE#         128
+  C:0310H         LINE#         130
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        HANGWAI
+
+  -------         MODULE        ?C?ULDIV
+  C:01A3H         PUBLIC        ?C?ULDIV
+BL51 BANKED LINKER/LOCATER V4.13                                                      05/19/2011  00:39:50  PAGE 5
+
+
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?ULCMP
+  C:0235H         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?DISPLAY?HANGWAI
+
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

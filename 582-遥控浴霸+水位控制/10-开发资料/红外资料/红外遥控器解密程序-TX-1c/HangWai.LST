@@ -1,0 +1,161 @@
+C51 COMPILER V6.12  HANGWAI                                                                05/19/2011 00:39:49 PAGE 1   
+
+
+C51 COMPILER V6.12, COMPILATION OF MODULE HANGWAI
+OBJECT MODULE PLACED IN .\HangWai.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE .\HangWai.c DEBUG OBJECTEXTEND
+
+stmt level    source
+
+   1          #include <reg52.h>
+   2          #define uchar unsigned char 
+   3          
+   4          //天祥板子的外部中断1
+   5          sbit dula=P2^6;
+   6          sbit wela=P2^7;
+   7          sbit LEDR=P2^2;
+   8          uchar code table[]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,
+   9                              0x07,0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+  10          
+  11          //时间计算
+  12          #define Imax 14000    //此处为晶振为11.0592时的取值, 
+  13          #define Imin 8000    //如用其它频率的晶振时,
+  14          #define Inum1 1450    //要改变相应的取值。
+  15          #define Inum2 700 
+  16          #define Inum3 3000 
+  17          //解码变量
+  18          unsigned char Im[4]={0x00,0x00,0x00,0x00};
+  19          uchar show[2]={0,0};
+  20          
+  21          //全局变量
+  22          uchar f;
+  23          unsigned long m,Tc;
+  24          unsigned char IrOK;
+  25          
+  26          
+  27          //延时
+  28          void delay(uchar i)
+  29          {
+  30   1        uchar j,k; 
+  31   1        for(j=i;j>0;j--)
+  32   1          for(k=125;k>0;k--);
+  33   1      }
+  34          
+  35          //数码管显示
+  36          void display()
+  37          {
+  38   1         dula=0;
+  39   1         P0=table[show[0]];
+  40   1         dula=1;
+  41   1         dula=0;
+  42   1         
+  43   1         wela=0;
+  44   1         P0=0xfe;
+  45   1         wela=1;
+  46   1         wela=0;
+  47   1         delay(5);
+  48   1         
+  49   1         P0=table[show[1]];
+  50   1         dula=1;
+  51   1         dula=0;
+  52   1         
+  53   1         P0=0xfd;
+  54   1         wela=1;
+  55   1         wela=0;
+C51 COMPILER V6.12  HANGWAI                                                                05/19/2011 00:39:49 PAGE 2   
+
+  56   1         delay(5);
+  57   1      }
+  58          
+  59          
+  60          //外部中断解码程序_外部中断0
+  61          void intersvr1(void) interrupt 2 using 1
+  62          {
+  63   1       TR0=1;
+  64   1       Tc=TH0*256+TL0;//提取中断时间间隔时长
+  65   1       TH0=0; 
+  66   1       TL0=0;         //定时中断重新置零
+  67   1       if((Tc>Imin)&&(Tc<Imax))
+  68   1       { 
+  69   2      	m=0;
+  70   2      	f=1;
+  71   2      	return;
+  72   2       }       //找到启始码
+  73   1       if(f==1)
+  74   1       {
+  75   2          if(Tc>Inum1&&Tc<Inum3) 
+  76   2          {
+  77   3         	Im[m/8]=Im[m/8]>>1|0x80; m++; 
+  78   3          }
+  79   2          if(Tc>Inum2&&Tc<Inum1) 
+  80   2          {
+  81   3            Im[m/8]=Im[m/8]>>1; m++; //取码
+  82   3        	 }
+  83   2        	 if(m==32) 
+  84   2          {
+  85   3            m=0;  
+  86   3            f=0;
+  87   3            if(Im[2]==~Im[3]) 
+  88   3            {
+  89   4                 IrOK=1;
+  90   4      			  TR0=0; 
+  91   4         	}
+  92   3            else IrOK=0;   //取码完成后判断读码是否正确
+  93   3          }
+  94   2                     //准备读下一码
+  95   2       }
+  96   1       
+  97   1      }
+  98          
+  99          
+ 100          /*演示主程序*/
+ 101          void main(void)
+ 102          {
+ 103   1       unsigned int  a;
+ 104   1         
+ 105   1       m=0;
+ 106   1       f=0;
+ 107   1       EA=1;//开启总中断
+ 108   1       
+ 109   1       IT1=1;//下降沿有效
+ 110   1       EX1=1;//外部中断1开
+ 111   1       
+ 112   1       TMOD=0x11;//定时器初始化  
+ 113   1       TH0=0;//T0赋初值
+ 114   1       TL0=0;
+ 115   1       TR0=0;//t0开始计时
+ 116   1      
+ 117   1       while(1)
+C51 COMPILER V6.12  HANGWAI                                                                05/19/2011 00:39:49 PAGE 3   
+
+ 118   1       {
+ 119   2       
+ 120   2        if(IrOK==1) 
+ 121   2        {
+ 122   3            show[1]=Im[2] & 0x0F;     //取键码的低四位
+ 123   3            show[0]=Im[2] >> 4;  
+ 124   3            IrOK=0;
+ 125   3           LEDR=0;
+ 126   3        }
+ 127   2        for(a=100;a>0;a--)
+ 128   2         {
+ 129   3          //display();
+ 130   3         }
+ 131   2       
+ 132   2       }
+ 133   1      }
+ 134          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    463    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     16    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
